@@ -1,0 +1,31 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navigation') %>
+
+<h3>Upload and Store CSV File</h3>
+
+<% if(success) { %>
+
+<div class="alert alert-dismissible alert-success mt-4 d-flex">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Well done!</strong> &nbsp;&nbsp;&nbsp;You successfully uploaded a file! <strong class="ml-auto">Try another one!</strong>
+</div>
+
+<% } %>
+
+
+<form class="mt-5" action="/csv" method="post" enctype="multipart/form-data">
+	<div class="form-group">
+    <label for="uploadCSV" class="text-info">File input</label>
+    <input type="file" class="form-control-file" id="uploadCSV" name="csv">
+    <small id="fileHelp" class="form-text text-muted">Only CSV files are allowed</small>
+  </div>
+	       
+	<button type="submit" class="btn btn-primary">Send</button> 
+
+</form>
+
+
+
+
+<%- include('layouts/footer') %>  
+

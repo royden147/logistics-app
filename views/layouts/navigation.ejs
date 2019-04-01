@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <a class="navbar-brand" href="/">Logistics App</a>
+
+  <div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <% if(pageName === 'home') { %>active<% } %>">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'about') { %>active<% } %>">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'csv') { %>active<% } %>">
+        <a class="nav-link" href="/csv">Upload CSV</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
+        <a class="nav-link" href="/csv/fetch">Fetch CSV</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+<div class="container mt-5">
+
