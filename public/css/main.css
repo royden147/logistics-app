@@ -1,13 +1,20 @@
-.footer{
-	background-color: #ccc;
-	padding: 20px;
-	width: 100%;
-	text-align: center;
-	position: fixed;
-	bottom: 0;
-	left: 0;
+table tr:nth-child(odd) {
+   background: #c1e7ff;
 }
 
-.footer p {
-	margin-bottom: 0;
+table tr:nth-child(odd) td {
+   border: 1px solid #b8ddea;
+}
+
+table tr:nth-child(even) {
+   background: #cecede;
+}
+
+table tr:nth-child(even) td {
+   border: 1px solid #d1bae6;
+}
+
+
+.table-bordered th {
+	border: 1px solid #f59298;
 }

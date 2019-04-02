@@ -1,8 +1,70 @@
 <%- include('layouts/header') %>
-<%- include('layouts/navigation') %>
 
-<h3>Fetch CSV</h3>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Logistics App</a>
+  <div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <% if(pageName === 'home') { %>active<% } %>">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'about') { %>active<% } %>">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'csv') { %>active<% } %>">
+        <a class="nav-link" href="/csv">Upload CSV</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
+        <a class="nav-link" href="/csv/fetch">Fetch CSV</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-<div><%= data %></div>
+<h3 class="mt-5 ml-5">Fetch CSV</h3>
+
+<table class="mt-5 table table-bordered">
+  <thead>
+    <tr style="background-color: #f5a199; border: 1px solid green;">
+      <th scope="col">Order Id</th>
+      <th scope="col">Order Weight</th>
+      <th scope="col">Order Description</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Pickup Ready Day</th>
+      <th scope="col">Customer Id</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer Address</th>
+      <th scope="col">Customer Tel</th>
+      <th scope="col">Retailer Id</th>
+      <th scope="col">Retailer Name</th>
+      <th scope="col">Retailer Tel</th>
+      <th scope="col">Retailer Address</th>
+      <th scope="col">Logistics Id</th>
+      <th scope="col">Logistics Name</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% csvs.forEach(function(csv){ %>
+      	<tr class="">
+          <td class="align-middle"> <%= csv._doc.Order_id %> </td>
+          <td class="align-middle"> <%= csv._doc.Order_weight %> </td>
+          <td class="align-middle"> <%= csv._doc.Order_description %> </td>
+          <td class="align-middle"> <%= csv._doc.Quantity %> </td>
+          <td class="align-middle"> <%= csv._doc.Pickup_Ready_Day %> </td>
+          <td class="align-middle"> <%= csv._doc.Customer_id %> </td>
+          <td class="align-middle"> <%= csv._doc.Customer__name %> </td>
+          <td class="align-middle"> <%= csv._doc.Customer_address %> </td>
+          <td class="align-middle"> <%= csv._doc.Customer_tel %> </td>
+          <td class="align-middle"> <%= csv._doc.retailer_id %> </td>
+          <td class="align-middle"> <%= csv._doc.retailer_name %> </td>
+          <td class="align-middle"> <%= csv._doc.retailer_tel %> </td>
+          <td class="align-middle"> <%= csv._doc.retailer_address %> </td>
+          <td class="align-middle"> <%= csv._doc.Logistics_id %> </td>
+          <td class="align-middle"> <%= csv._doc.Logistics_name %> </td>
+        </tr>   
+     <% }) %> 
+  </tbody>
+</table> 
+
 
 <%- include('layouts/footer') %>
+
