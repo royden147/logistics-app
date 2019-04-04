@@ -16,6 +16,7 @@
   "author": "Ayaz",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "convert-csv-to-json": "0.0.14",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

@@ -14,15 +14,33 @@
         <a class="nav-link" href="/csv">Upload CSV</a>
       </li>
       <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
-        <a class="nav-link" href="/csv/fetch">Fetch CSV</a>
+        <a class="nav-link" href="/csv/fetch">Shipment Data</a>
+      </li>
+       <li class="nav-item <% if(pageName === 'track') { %>active<% } %>">
+        <a class="nav-link" href="/track">Track Order</a>
       </li>
     </ul>
   </div>
-</nav>
+</nav> 
 
-<h3 class="mt-5 ml-5">Fetch CSV</h3>
 
-<table class="mt-5 table table-bordered">
+
+  <% if(success) { %>
+
+  <div class="mt-5 ml-5 alert alert-dismissible alert-success mt-4 d-flex" style="width: 92%;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Well done!</strong> &nbsp;&nbsp;&nbsp;You successfully set shipment status! <strong class="ml-auto">Try another one!</strong>
+  </div>
+
+  <% } %>
+
+
+
+<h3 class="mt-5 ml-5">Shipment Data</h3>
+
+<p class="mt-4 ml-5" style="color: seagreen;">Please click on any Shipment Order to see its Tracking Id and to set its Tracking Status!</p>
+
+<table class="mt-5 table table-bordered table-hover">
   <thead>
     <tr style="background-color: #f5a199; border: 1px solid green;">
       <th scope="col">Order Id</th>
@@ -43,8 +61,8 @@
     </tr>
   </thead>
   <tbody>
-     <% csvs.forEach(function(csv){ %>
-      	<tr class="">
+     <% csvs.forEach(csv => { %>
+      	<tr onclick="window.open('http://localhost:4000/orders/' + '<%= csv._doc._id %>', '_self');">
           <td class="align-middle"> <%= csv._doc.Order_id %> </td>
           <td class="align-middle"> <%= csv._doc.Order_weight %> </td>
           <td class="align-middle"> <%= csv._doc.Order_description %> </td>

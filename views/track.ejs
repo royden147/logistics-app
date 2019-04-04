@@ -1,0 +1,48 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navigation') %>
+
+
+<div class="container">
+
+	<% if (showError) { %>
+
+  <div class="alert alert-dismissible alert-danger mt-4 d-flex">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Ooops!</strong>&nbsp;&nbsp;&nbsp;&nbsp;Please provide correct Tracking Id!
+  </div>
+
+  <% } %>
+
+	<h3 class="mt-5">Track Your Order</h3>
+
+	<form action="/track" method="POST" class="mt-5">
+		<div class="form-group" style="width: 35%;">
+	    <label for="tracking-id"><strong>Tracking Id</strong></label>
+	    <input type="text" class="form-control" id="tracking-id" name="tracking_id" placeholder="Enter Tracking Id">
+	  </div>
+	  <button class="btn btn-primary mt-2">Search</button>
+	</form>
+
+<% if (trackingData.length !== 0) { %>
+	<table class="mt-5 table table-bordered table-hover">
+	  <thead>
+	    <tr style="background-color: #f5a199; border: 1px solid green;" class="text-center">
+	      <th scope="col">Tracking Id</th>
+	      <th scope="col">Tracking Status</th>
+	      <th scope="col">Time</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	     <% trackingData.forEach(function(tracking){ %>
+	      	<tr class="text-center">
+	          <td class="align-middle"> <%= tracking._doc.tracking_id %> </td>
+	          <td class="align-middle"> <%= tracking._doc.tracking_status %> </td>
+	          <td class="align-middle"> <%= tracking._doc.date_time %> </td>
+	        </tr>   
+	     <% }) %> 
+	  </tbody>
+	</table> 
+<% } %>
+</div>
+
+<%- include('layouts/footer') %>  

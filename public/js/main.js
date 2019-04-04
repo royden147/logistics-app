@@ -10,4 +10,3 @@ if(alertClose){
 	// 	alertClose.parentElement.remove()
 	// }, 6000)
 }
-

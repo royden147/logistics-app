@@ -1,5 +1,5 @@
 table tr:nth-child(odd) {
-   background: #c1e7ff;
+   background-color: #c1e7ff;
 }
 
 table tr:nth-child(odd) td {
@@ -7,7 +7,7 @@ table tr:nth-child(odd) td {
 }
 
 table tr:nth-child(even) {
-   background: #cecede;
+   background-color: #cecede;
 }
 
 table tr:nth-child(even) td {
@@ -17,4 +17,22 @@ table tr:nth-child(even) td {
 
 .table-bordered th {
 	border: 1px solid #f59298;
+}
+
+
+
+table tr:nth-child(odd):hover{
+	background-color: #a0d3f3;
+}
+table tr:nth-child(odd):hover td{
+	border: 1px solid #89caf3;
+}
+
+
+
+table tr:nth-child(even):hover{
+	background-color: #d3b4f3;
+}
+table tr:nth-child(even):hover td{
+	border: 1px solid #dda7f5;
 }

@@ -13,9 +13,14 @@
       <li class="nav-item <% if(pageName === 'csv') { %>active<% } %>">
         <a class="nav-link" href="/csv">Upload CSV</a>
       </li>
-      <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
-        <a class="nav-link" href="/csv/fetch">Fetch CSV</a>
-      </li>
+      <% if(showLinks) { %>
+        <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
+          <a class="nav-link" href="/csv/fetch">Shipment Data</a>
+        </li>
+        <li class="nav-item <% if(pageName === 'track') { %>active<% } %>">
+          <a class="nav-link" href="/track">Track Order</a>
+        </li>
+      <% } %>
     </ul>
   </div>
 

@@ -5,6 +5,7 @@ const csvToJson = require('convert-csv-to-json');
 const path = require('path');
 const CSV = require('../models/csv');
 const fs = require('fs');
+const app = require('../app');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -16,37 +17,35 @@ const storage = multer.diskStorage({
 })
  
 var upload = multer({ 
-	storage: storage,
-	fileFilter: function (req, file, cb) {
-	    var ext = path.extname(file.originalname);
-	    if(ext !== '.csv') {
-	        return cb(new Error('Only CSV file uploads are allowed'))
-	    }
-	    cb(null, true)
-	},
+	storage: storage
 }).single('csv');
 
 
 router.get('/', (req, res, next)=>{
-	res.render('csv', {pageName: 'csv', success: req.query.s})
+	res.render('csv', {pageName: 'csv', success: req.query.s, showLinks: global.showLinks, selectFirst: req.query.e, incorrectFormat: req.query.i})
 });
 
 
 router.post('/', upload, async (req, res, next)=>{
-	console.log('inside post route')
-	var filePath = path.join(__dirname, '..', 'uploads', `${req.file.originalname}`);
+	if(!req.file){
+	  return  res.redirect(301, '/csv?e=1');				
+	}
+	let filePath = path.join(__dirname, '..', 'uploads', `${req.file.originalname}`);
+	if(path.extname(filePath) !== '.csv'){
+		fs.unlinkSync(filePath);		
+		return res.redirect(301, '/csv?i=1');
+	}
 	let json = csvToJson.fieldDelimiter(',').getJsonFromCsv(filePath);
 	const csv = await CSV.create(...json);
-	console.log(json);
 	fs.unlinkSync(filePath);
+	global.showLinks = true;
 	res.redirect(301, '/csv?s=1');
 });
 
 
 router.get('/fetch', async (req, res, next)=>{
 	const csvs = await CSV.find();
-	console.log(csvs)
-	res.render('fetch', {pageName: 'fetch', csvs: csvs});
+	res.render('fetch', {pageName: 'fetch', csvs: csvs, success: req.query.s, showLinks: global.showLinks});
 })
 
 module.exports = router;
