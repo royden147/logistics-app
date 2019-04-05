@@ -1,0 +1,94 @@
+<%- include('layouts/header') %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Logistics App</a>
+  <div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item <% if(pageName === 'home') { %>active<% } %>">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'about') { %>active<% } %>">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'csv') { %>active<% } %>">
+        <a class="nav-link" href="/csv">Upload CSV</a>
+      </li>
+      <li class="nav-item <% if(pageName === 'fetch') { %>active<% } %>">
+        <a class="nav-link" href="/csv/fetch">Shipment Data</a>
+      </li>
+       <li class="nav-item <% if(pageName === 'track') { %>active<% } %>">
+        <a class="nav-link" href="/track">Track Order</a>
+      </li>
+       <li class="nav-item <% if(pageName === 'invoice') { %>active<% } %>">
+        <a class="nav-link" href="/invoice">Invoices</a>
+      </li>
+    </ul>
+  </div>
+</nav>    
+
+<% if(invoices.length === 0) { %>
+	
+  <div class="mt-5 ml-5 alert alert-dismissible alert-danger mt-4 d-flex" style="width: 92%;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>No Invoice to Show!</strong>&nbsp;&nbsp;&nbsp;&nbsp;Please first set tracking status and total bill by clicking on an order of shipment data!
+  </div>
+
+<% } %>
+
+
+<h3 class="mt-5 ml-5">Invoices</h3>
+
+
+<% if(invoices.length > 0) { %>
+
+<p class="mt-4 ml-5" style="color: #682e8b;">Please click on any Invoice to generate its PDF</p>
+
+<table id="invoiceTable" class="mt-5 table table-bordered table-hover">
+  <thead>
+    <tr style="background-color: #f5a199; border: 1px solid green;">
+      <th scope="col" class="align-middle text-center">Order Id</th>
+      <th scope="col" class="align-middle text-center">Order Weight</th>
+      <th scope="col" class="align-middle text-center">Order Description</th>
+      <th scope="col" class="text-center align-middle">Quantity</th>
+      <th scope="col" class="align-middle text-center">Pickup Ready Day</th>
+      <th scope="col" class="align-middle text-center">Customer Id</th>
+      <th scope="col" class="align-middle text-center">Customer Name</th>
+      <th scope="col" class="align-middle text-center">Customer Address</th>
+      <th scope="col" class="align-middle text-center">Customer Tel</th>
+      <th scope="col" class="align-middle text-center">Retailer Id</th>
+      <th scope="col" class="align-middle text-center">Retailer Name</th>
+      <th scope="col" class="align-middle text-center">Retailer Tel</th>
+      <th scope="col" class="align-middle text-center">Retailer Address</th>
+      <th scope="col" class="align-middle text-center">Logistics Id</th>
+      <th scope="col" class="align-middle text-center">Logistics Name</th>
+      <th scope="col" class="text-center align-middle">Tracking Id</th>
+      <th scope="col" class="align-middle text-center">Total Bill</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% invoices.forEach(invoice => { %>
+      	<tr onclick="window.open('/invoice/pdf/' + '<%= invoice._doc._id %>', '_blank');">
+          <td class="align-middle text-center"> <%= invoice._doc.Order_id %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Order_weight %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Order_description %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Quantity %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Pickup_Ready_Day %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Customer_id %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Customer__name %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Customer_address %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Customer_tel %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.retailer_id %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.retailer_name %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.retailer_tel %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.retailer_address %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Logistics_id %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.Logistics_name %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.tracking_id %> </td>
+          <td class="align-middle text-center"> <%= invoice._doc.total_bill %> </td>
+        </tr>   
+     <% }) %> 
+  </tbody>
+</table> 
+
+<% } %>
+
+<%- include('layouts/footer') %>

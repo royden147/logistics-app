@@ -2,7 +2,7 @@
 <%- include('layouts/navigation') %>
 
 
-<h3>Order Tracking ID and Status</h3>
+<h3 style="word-spacing: 5px;">Order Tracking ID, Status and Total Bill</h3>
 
 <div class="mt-5">
 <form action="/orders" method="POST">
@@ -11,16 +11,27 @@
 		<p><strong>Tracking Id:</strong> &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0034f9;"><%= order._doc._id %><span></p>
 	</div>
 	<div class="form-group mt-4" style="width: 27.5%;">
-      <select name="tracking_status" class="custom-select">
-      	<option value="" disabled selected hidden>Select Shipment Status</option>
-        <option value="Order Received">Order Received</option>
-        <option value="Order Confirmed">Order Confirmed</option>
-        <option value="Order Ready">Order Ready</option>
-        <option value="Order Shipped">Order Shipped</option>
-        <option value="Order On the Way">Order On the Way</option>
-        <option value="Order Delivered">Order Delivered</option>
-      </select>
+    <select name="tracking_status" class="custom-select" required>
+    	<option value="" disabled selected hidden>Select Shipment Status</option>
+      <option value="Order Received">Order Received</option>
+      <option value="Order Confirmed">Order Confirmed</option>
+      <option value="Order Ready">Order Ready</option>
+      <option value="Order Shipped">Order Shipped</option>
+      <option value="Order On the Way">Order On the Way</option>
+      <option value="Order Delivered">Order Delivered</option>
+    </select>
+  </div>
+  <div class="form-group mt-4" style="width: 27.5%;">
+    <label for="total_bill"><strong>Total Bill</strong></label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
+      </div>
+      <input type="number" class="form-control" name="total_bill" id="total_bill" placeholder="Enter Total Bill" min="1" required>
     </div>
-   	<button type="submit" class="btn btn-primary mt-2">Save</button> 
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Save</button> 
 </form>
 </div>
+
+

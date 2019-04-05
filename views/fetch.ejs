@@ -19,6 +19,9 @@
        <li class="nav-item <% if(pageName === 'track') { %>active<% } %>">
         <a class="nav-link" href="/track">Track Order</a>
       </li>
+       <li class="nav-item <% if(pageName === 'invoice') { %>active<% } %>">
+        <a class="nav-link" href="/invoice">Invoices</a>
+      </li>
     </ul>
   </div>
 </nav> 
@@ -29,7 +32,7 @@
 
   <div class="mt-5 ml-5 alert alert-dismissible alert-success mt-4 d-flex" style="width: 92%;">
     <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Well done!</strong> &nbsp;&nbsp;&nbsp;You successfully set shipment status! <strong class="ml-auto">Try another one!</strong>
+    <strong>Well done!</strong> &nbsp;&nbsp;&nbsp;You successfully set shipment status and total bill amount! <strong class="ml-auto">Try another one!</strong>
   </div>
 
   <% } %>
@@ -38,46 +41,46 @@
 
 <h3 class="mt-5 ml-5">Shipment Data</h3>
 
-<p class="mt-4 ml-5" style="color: seagreen;">Please click on any Shipment Order to see its Tracking Id and to set its Tracking Status!</p>
+<p class="mt-4 ml-5" style="color: #682e8b;">Please click on any Shipment Order to see its Tracking Id, set its Tracking Status and Total Bill Amount!</p>
 
 <table class="mt-5 table table-bordered table-hover">
   <thead>
     <tr style="background-color: #f5a199; border: 1px solid green;">
-      <th scope="col">Order Id</th>
-      <th scope="col">Order Weight</th>
-      <th scope="col">Order Description</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Pickup Ready Day</th>
-      <th scope="col">Customer Id</th>
-      <th scope="col">Customer Name</th>
-      <th scope="col">Customer Address</th>
-      <th scope="col">Customer Tel</th>
-      <th scope="col">Retailer Id</th>
-      <th scope="col">Retailer Name</th>
-      <th scope="col">Retailer Tel</th>
-      <th scope="col">Retailer Address</th>
-      <th scope="col">Logistics Id</th>
-      <th scope="col">Logistics Name</th>
+      <th scope="col" class="text-center">Order Id</th>
+      <th scope="col" class="text-center">Order Weight</th>
+      <th scope="col" class="text-center">Order Description</th>
+      <th scope="col" class="text-center align-middle">Quantity</th>
+      <th scope="col" class="text-center">Pickup Ready Day</th>
+      <th scope="col" class="text-center">Customer Id</th>
+      <th scope="col" class="text-center">Customer Name</th>
+      <th scope="col" class="text-center">Customer Address</th>
+      <th scope="col" class="text-center">Customer Tel</th>
+      <th scope="col" class="text-center">Retailer Id</th>
+      <th scope="col" class="text-center">Retailer Name</th>
+      <th scope="col" class="text-center">Retailer Tel</th>
+      <th scope="col" class="text-center">Retailer Address</th>
+      <th scope="col" class="text-center">Logistics Id</th>
+      <th scope="col" class="text-center">Logistics Name</th>
     </tr>
   </thead>
   <tbody>
      <% csvs.forEach(csv => { %>
       	<tr onclick="window.open('http://localhost:4000/orders/' + '<%= csv._doc._id %>', '_self');">
-          <td class="align-middle"> <%= csv._doc.Order_id %> </td>
-          <td class="align-middle"> <%= csv._doc.Order_weight %> </td>
-          <td class="align-middle"> <%= csv._doc.Order_description %> </td>
-          <td class="align-middle"> <%= csv._doc.Quantity %> </td>
-          <td class="align-middle"> <%= csv._doc.Pickup_Ready_Day %> </td>
-          <td class="align-middle"> <%= csv._doc.Customer_id %> </td>
-          <td class="align-middle"> <%= csv._doc.Customer__name %> </td>
-          <td class="align-middle"> <%= csv._doc.Customer_address %> </td>
-          <td class="align-middle"> <%= csv._doc.Customer_tel %> </td>
-          <td class="align-middle"> <%= csv._doc.retailer_id %> </td>
-          <td class="align-middle"> <%= csv._doc.retailer_name %> </td>
-          <td class="align-middle"> <%= csv._doc.retailer_tel %> </td>
-          <td class="align-middle"> <%= csv._doc.retailer_address %> </td>
-          <td class="align-middle"> <%= csv._doc.Logistics_id %> </td>
-          <td class="align-middle"> <%= csv._doc.Logistics_name %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Order_id %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Order_weight %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Order_description %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Quantity %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Pickup_Ready_Day %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Customer_id %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Customer__name %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Customer_address %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Customer_tel %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.retailer_id %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.retailer_name %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.retailer_tel %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.retailer_address %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Logistics_id %> </td>
+          <td class="align-middle text-center"> <%= csv._doc.Logistics_name %> </td>
         </tr>   
      <% }) %> 
   </tbody>

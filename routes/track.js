@@ -6,8 +6,9 @@ const Track = require('../models/track');
 const app = require('../app');
 
 
-router.get('/', (req, res, next)=>{
-	res.render('track', {pageName: 'track', trackingData: [], showLinks: global.showLinks, showError: false});
+router.get('/', async (req, res, next)=>{
+	const trackingData = await Track.find();
+	res.render('track', {pageName: 'track', trackingData: trackingData, showLinks: global.showLinks, showError: false, search: false});
 });
 
 
@@ -17,6 +18,6 @@ router.post('/', async (req, res, next)=>{
 	if(trackingData.length === 0){
 		showError = true;
 	}
-	res.render('track', {pageName: 'track', trackingData: trackingData, showLinks: global.showLinks, showError: showError});
+	res.render('track', {pageName: 'track', trackingData: trackingData, showLinks: global.showLinks, showError: showError, search: true});
 });
 module.exports = router;

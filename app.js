@@ -2,6 +2,8 @@ const express = require('express');
 const csvRoutes = require('./routes/csv');
 const ordersRoutes = require('./routes/orders');
 const trackRoutes = require('./routes/track');
+const invoiceRoutes = require('./routes/invoice');
+
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 
@@ -30,6 +32,7 @@ app.get('/about', (req, res, next)=>{
 app.use('/csv', csvRoutes);
 app.use('/orders', ordersRoutes);
 app.use('/track', trackRoutes);
+app.use('/invoice', invoiceRoutes);
 
 //catch all route
 app.use((req, res, next)=>{
@@ -51,3 +54,4 @@ mongoose.connect('mongodb+srv://muhammad:F121369.@csv-app-cluster0-szudg.mongodb
 
 
 module.exports = app;
+
